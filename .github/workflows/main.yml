@@ -19,13 +19,15 @@ jobs:
       - name: "test ruby"
         id: "test-ruby"
         env:
-          ARG1: ${{ secrets.ARG1 }}
-          ARG2: ${{ secrets.ARG2 }}
+          ARG1: ${{secrets.ARG1}}
+          ARG2: ${{secrets.ARG2}}
         run: |
+          echo ${ARG1}
+          echo ${ARG2}
           echo "result=$(ruby ./.github/workflows/testruby.rb ${ARG1} ${ARG2})" >> $GITHUB_OUTPUT
       - name: "step 2"
         id: "step2"
         env:
-          RESULT: ${{ steps.test-ruby.outputs.result }}
+          RESULT: ${{steps.test-ruby.outputs.result}}
         run: |
           echo ${RESULT}
