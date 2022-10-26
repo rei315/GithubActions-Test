@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  distribute:
+    if: contains(github.event.comment.html_url, '/pull/') && startsWith(github.event.comment.body, '/test')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7.2'
+          bundler-cache: true
+      - name: "test ruby"
+        id: "test-ruby"
+        env:
+          ARG1: ${{ secrets.ARG1 }}
+          ARG2: ${{ secrets.ARG2 }}
+        run: |
+          echo "result=$(ruby ./.github/workflows/testruby.rb ${ARG1} ${ARG2})" >> $GITHUB_OUTPUT
+      - name: "step 2"
+        id: "step2"
+        env:
+          JWT_TOKEN: ${{ steps.test-ruby.outputs.result }}
+        run: |
+          echo ${JWT_TOKEN}
