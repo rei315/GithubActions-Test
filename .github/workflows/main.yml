@@ -26,6 +26,6 @@ jobs:
       - name: "step 2"
         id: "step2"
         env:
-          JWT_TOKEN: ${{ steps.test-ruby.outputs.result }}
+          RESULT: ${{ steps.test-ruby.outputs.result }}
         run: |
-          echo ${JWT_TOKEN}
+          echo ${RESULT}
