@@ -15,7 +15,7 @@ jobs:
       - name: "test ruby"
         id: "test-ruby"
         env:
-          ARG: ${{secrets.ARG1}}
+          ARG: "hello"
         run: | 
           echo "version=$(ruby ./.github/workflows/testruby.rb ${ARG1})" >> $GITHUB_OUTPUT
       - name: "test1"
