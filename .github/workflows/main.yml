@@ -14,18 +14,5 @@ jobs:
           fetch-depth: 0
       - name: "test ruby"
         id: "test-ruby"
-        env:
-          ARG1: ${{secrets.ARG1}}
-          ARG2: ${{secrets.ARG2}}
-          ARG3: ${{secrets.ARG2}}
-        run: |
-          echo ${ARG1}
-          echo ${ARG2}
-          echo "hello"
-          echo "result=$(ruby ./.github/workflows/testruby.rb ${ARG1} ${ARG2} ${ARG3}) hello" >> $GITHUB_OUTPUT
-      - name: "step 2"
-        id: "step2"
-        env:
-          RESULT: ${{steps.test-ruby.outputs.result}}
-        run: |
-          echo ${RESULT}
+        run: | 
+          which ruby
