@@ -14,5 +14,18 @@ jobs:
           fetch-depth: 0
       - name: "test ruby"
         id: "test-ruby"
+        env:
+          ARG: ${{secrets.ARG1}}
         run: | 
-          echo "hello"
+          echo "version=$(ruby ./.github/workflows/testruby.rb ${ARG1})" >> $GITHUB_OUTPUT
+      - name: "test1"
+        env:
+          data: ${{steps.test-ruby.outputs.version}}
+        run: |
+          echo ${data}
+      - name: "test2"
+        env:
+          data: ${{steps.test-ruby.outputs.version}}
+        run: |
+          echo ${data}
+        
