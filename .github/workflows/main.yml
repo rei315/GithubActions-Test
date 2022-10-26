@@ -17,10 +17,11 @@ jobs:
         env:
           ARG1: ${{secrets.ARG1}}
           ARG2: ${{secrets.ARG2}}
+          ARG3: ${{secrets.ARG2}}
         run: |
           echo ${ARG1}
           echo ${ARG2}
-          echo "result=$(ruby ./.github/workflows/testruby.rb ${ARG1} ${ARG2})" >> $GITHUB_OUTPUT
+          echo "result=$(ruby ./.github/workflows/testruby.rb ${ARG1} ${ARG2} ${ARG3})" >> $GITHUB_OUTPUT
       - name: "step 2"
         id: "step2"
         env:
