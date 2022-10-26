@@ -1,9 +1,6 @@
 require "jwt"
 
-JWT_ISSUER_ID = ARGV[0]
-JWT_KEY_ID = ARGV[1]
-JWT_PRIVATE_KEY_CODE = ARGV[2]
-TEST = ARGV[3]
+TEST = ARGV[0]
 
 # private_key = OpenSSL::PKey.read(JWT_PRIVATE_KEY_CODE)
 
