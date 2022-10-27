@@ -12,19 +12,17 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: "test ruby"
-        id: "test-ruby"
-        run: | 
-          branch=$(echo $PR_COMMENT | cut -d "[" -f2 | cut -d "]" -f1)
-          echo ${branch}
-      - name: "test1"
+      - name: get pull request info
+        uses: octokit/request-action@v2.x
+        id: pull_request
+        with:
+          route: GET /repos/{owner}/{repo}/pulls/{pull_number}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          pull_number: ${{ github.event.issue.number }}
         env:
-          data: ${{steps.test-ruby.outputs.version}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: print branch name
         run: |
-          echo ${data}
-      - name: "test2"
-        env:
-          data: ${{steps.test-ruby.outputs.version}}
-        run: |
-          echo ${data}
-        
+          branchName = ${{ fromJSON(steps.pull_request.outputs.data).head.ref }}
+          echo ${branchName}
