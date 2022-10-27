@@ -1,4 +1,4 @@
-import sys
+import os
 
 JWT_TOKEN = os.environ['JWT_TOKEN']
 BRANCH_NAME = os.environ['BRANCH_NAME']
