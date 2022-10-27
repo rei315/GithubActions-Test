@@ -14,14 +14,12 @@ jobs:
           fetch-depth: 0
       - name: "test ruby"
         id: "test-ruby"
-        env:
-          ARG: "fbf8f2a7-9bc8-4ddd-ae7a-ded000000000"
-          ARG2: "hello"
-          ARG3: "world"
-          BRANCH: ${{github.head_ref}}
         run: | 
-          version=$(JWT_TOKEN=${ARG} BRANCH_NAME=${ARG2} WORKFLOW_NAME=${BRANCH} python3 ./.github/workflows/test.py)
-          echo "${version}" >> $GITHUB_OUTPUT
+          echo '1' $GITHUB_REF
+          echo '2' ${{ github.ref }}
+          echo '3' ${{ github.ref_name }}
+          echo '4' ${{ github.head_ref }}
+          echo '5' ${{ github.base_ref }}
       - name: "test1"
         env:
           data: ${{steps.test-ruby.outputs.version}}
