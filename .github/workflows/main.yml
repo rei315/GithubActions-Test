@@ -17,7 +17,7 @@ jobs:
         env:
           ARG: "fbf8f2a7-9bc8-4ddd-ae7a-ded000000000"
         run: | 
-          echo "version=$(ruby ./.github/workflows/testruby.rb ${ARG})" >> $GITHUB_OUTPUT
+          echo "version=$(python3 ./.github/workflows/test.py ${ARG} hello world)" >> $GITHUB_OUTPUT
       - name: "test1"
         env:
           data: ${{steps.test-ruby.outputs.version}}
