@@ -19,7 +19,8 @@ jobs:
           ARG2: "hello"
           ARG3: "world"
         run: | 
-          echo "version=$(python3 ./.github/workflows/test.py ${ARG} ${ARG2} ${ARG3})" >> $GITHUB_OUTPUT
+          version=$(JWT_TOKEN=${ARG} BRANCH_NAME=${ARG2} WORKFLOW_NAME=${ARG3} python3 ./.github/workflows/test.py
+          echo "${version}" >> $GITHUB_OUTPUT
       - name: "test1"
         env:
           data: ${{steps.test-ruby.outputs.version}}
