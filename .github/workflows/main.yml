@@ -15,11 +15,8 @@ jobs:
       - name: "test ruby"
         id: "test-ruby"
         run: | 
-          echo '1' $GITHUB_REF
-          echo '2' ${{ github.ref }}
-          echo '3' ${{ github.ref_name }}
-          echo '4' ${{ github.head_ref }}
-          echo '5' ${{ github.base_ref }}
+          branch=$(echo $PR_COMMENT | cut -d "[" -f2 | cut -d "]" -f1)
+          echo ${branch}
       - name: "test1"
         env:
           data: ${{steps.test-ruby.outputs.version}}
