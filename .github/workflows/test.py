@@ -1,7 +1,7 @@
 import sys
 
-JWT_TOKEN = sys.argv[1]
-BRANCH_NAME = sys.argv[2]
-WORKFLOW_NAME = sys.argv[3]
+JWT_TOKEN = os.environ['JWT_TOKEN']
+BRANCH_NAME = os.environ['BRANCH_NAME']
+WORKFLOW_NAME = os.environ['WORKFLOW_NAME']
 
 print(WORKFLOW_NAME)
