@@ -22,8 +22,15 @@ jobs:
           pull_number: ${{ github.event.issue.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create comments
+        run: |
+          cat << EOF > comments
+          1st
+          2nd
+          3rd
+          EOF
       - name: print
         env:
           PRURL: ${{ fromJSON(steps.pull_request.outputs.data).url }}
         run: |
-          echo ${PRURL}
+          gh pr comment -F ./comments "${URL}"
