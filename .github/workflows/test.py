@@ -1,7 +1,8 @@
 import os
+result = 200
 
-JWT_TOKEN = os.environ['JWT_TOKEN']
-BRANCH_NAME = os.environ['BRANCH_NAME']
-WORKFLOW_NAME = os.environ['WORKFLOW_NAME']
+if result == 200:
+    print("hello")
+    exit()
 
-print(WORKFLOW_NAME)
+print("good")
