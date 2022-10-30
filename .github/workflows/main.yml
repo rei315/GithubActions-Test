@@ -12,9 +12,9 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: print branch name
+      - name: first
         run: |
           python3 ./.github/workflows/test.py
-      - name: print branch name
+      - name: second
         run: |
-          echo "hello"
+          echo "good"
