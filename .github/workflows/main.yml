@@ -31,6 +31,7 @@ jobs:
           EOF
       - name: print
         env:
-          PRURL: ${{ fromJSON(steps.pull_request.outputs.data).url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ fromJSON(steps.pull_request.outputs.data).url }}
         run: |
-          gh pr comment -F ./comments "${URL}"
+          gh pr comment -F ./comments "${PR_URL}"
