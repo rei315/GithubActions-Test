@@ -22,3 +22,8 @@ jobs:
           pull_number: ${{ github.event.issue.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: print
+        env:
+          PRURL: ${{ fromJSON(steps.pull_request.outputs.data).url }}
+        run: |
+          echo ${PRURL}
