@@ -23,11 +23,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create comments
+        env:
+          RESULT: 200
         run: |
           cat << EOF > comments
-          1st
-          2nd
-          3rd
+          ${RESULT}
           EOF
       - name: print
         env:
