@@ -12,9 +12,17 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: first
+      - name: Create comments
         run: |
-          python3 ./.github/workflows/test.py
-      - name: second
-        run: |
-          echo "good"
+          cat << EOF > comments
+          1st
+          2nd
+          3rd
+          EOF
+
+    - name: Post comments
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        URL: ${{ github.event.pull_request.html_url }}
+      run:
+        gh pr comment -F ./comments "${URL}"
