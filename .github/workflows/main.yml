@@ -23,15 +23,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create comments
+        id: comment
         env:
           RESULT: 200
         run: |
-          cat << EOF > comments
-          ${RESULT}
-          EOF
+          echo "status_code=${RESULT}" >> $GITHUB_OUTPUT
       - name: print
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ fromJSON(steps.pull_request.outputs.data).html_url }}
+          BODY: ${{ steps.comment.outputs.status_code }}
         run: |
-          gh pr comment -F ./comments "${PR_URL}"
+          gh pr comment -F ${BODY} "${PR_URL}"
