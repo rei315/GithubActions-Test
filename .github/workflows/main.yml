@@ -34,4 +34,4 @@ jobs:
           PR_URL: ${{ fromJSON(steps.pull_request.outputs.data).html_url }}
           BODY: ${{ steps.comment.outputs.status_code }}
         run: |
-          gh pr comment -b ${BODY} "${PR_URL}"
+          gh pr comment -b "request status code: ${BODY}" "${PR_URL}"
