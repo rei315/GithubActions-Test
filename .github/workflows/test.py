@@ -1,8 +1,8 @@
 import os
 
-SHOULD_SKIP_UPDATE_VERSION = os.environ['SHOULD_SKIP_UPDATE_VERSION']
+shuold_skip = os.environ['SHOULD_SKIP_UPDATE_VERSION']
 
-if SHOULD_SKIP_UPDATE_VERSION == True:
+if shuold_skip == True:
     print("hello")
     exit()
 
