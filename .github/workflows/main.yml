@@ -16,3 +16,7 @@ jobs:
         id: comment
         run: |
           python3 ./.github/workflows/test.py
+      - name: Create comments
+        id: abc
+        run: |
+          python3 ./.github/workflows/test.py
