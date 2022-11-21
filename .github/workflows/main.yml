@@ -1,12 +1,15 @@
 name: Test
 
 on:
-  issue_comment:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      should_skip_update_version:
+        type: boolean
+        required: true
+        default: false
 
 jobs:
   distribute:
-    if: contains(github.event.comment.html_url, '/pull/') && startsWith(github.event.comment.body, '/test')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,7 +19,8 @@ jobs:
         id: comment
         run: |
           python3 ./.github/workflows/test.py
-      - name: Create comments
-        id: abc
+          nextVersion=$(SHOULD_SKIP_UPDATE_VERSION=${SKIP_UPDATE} python3 ./.github/workflows/test.py)
+          echo "nextVersion=${nextVersion}" >> $GITHUB_OUTPUT
+      - name: test
         run: |
-          python3 ./.github/workflows/test.py
+          echo ${{ steps.comment.outputs.nextVersion }}
