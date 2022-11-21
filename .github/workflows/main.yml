@@ -21,7 +21,7 @@ jobs:
           SKIP_UPDATE: ${{ github.event.inputs.should_skip_update_version }}
         run: |
           python3 ./.github/workflows/test.py
-          nextVersion=$(SHOULD_SKIP_UPDATE_VERSION=${SKIP_UPDATE} python3 ./.github/workflows/test.py)
+          nextVersion=$(shuold_skip=${SKIP_UPDATE} python3 ./.github/workflows/test.py)
           echo "nextVersion=${nextVersion}" >> $GITHUB_OUTPUT
       - name: test
         run: |
