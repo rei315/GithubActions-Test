@@ -14,7 +14,5 @@ jobs:
           fetch-depth: 0
       - name: Create comments
         id: comment
-        env:
-          RESULT: 200
         run: |
-          echo "status_code=${RESULT}" >> $GITHUB_OUTPUT
+          python3 test.py
