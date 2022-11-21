@@ -17,6 +17,8 @@ jobs:
           fetch-depth: 0
       - name: Create comments
         id: comment
+        env:
+          SKIP_UPDATE: ${{ github.event.inputs.should_skip_update_version }}
         run: |
           python3 ./.github/workflows/test.py
           nextVersion=$(SHOULD_SKIP_UPDATE_VERSION=${SKIP_UPDATE} python3 ./.github/workflows/test.py)
