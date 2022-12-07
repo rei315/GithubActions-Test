@@ -14,6 +14,8 @@ jobs:
         with:
           fetch-depth: 0
       - name: test
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: |
-          git diff origin/develop..HEAD --exit-code
+          git diff origin/develop..${BRANCH_NAME} --exit-code
   
