@@ -1,0 +1,19 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Check Version Diff
+
+on:
+  pull_request:
+    types: [opened]
+    
+jobs:
+  check_diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: test
+        run: |
+          git diff origin/develop..HEAD --exit-code
+  
