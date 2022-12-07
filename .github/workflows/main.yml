@@ -14,4 +14,4 @@ jobs:
       - name: Create comments
         id: comment
         run: |
-          git diff main feature/rei/test --exit-code
+          git diff main..feature/rei/test --exit-code
