@@ -5,6 +5,8 @@ name: Check Version Diff
 on:
   pull_request:
     types: [opened, reopened]
+    branches:
+      - 'feature/**'
     
 jobs:
   check_diff:
