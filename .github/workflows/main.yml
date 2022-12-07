@@ -1,12 +1,8 @@
 name: Test
 
 on:
-  workflow_dispatch:
-    inputs:
-      should_skip_update_version:
-        type: boolean
-        required: true
-        default: false
+  issue_comment:
+    types: [created]
 
 jobs:
   distribute:
@@ -17,11 +13,5 @@ jobs:
           fetch-depth: 0
       - name: Create comments
         id: comment
-        env:
-          SKIP_UPDATE: ${{ github.event.inputs.should_skip_update_version }}
         run: |
-          nextVersion=$(should_skip=${SKIP_UPDATE} python3 ./.github/workflows/test.py)
-          echo "nextVersion=${nextVersion}" >> $GITHUB_OUTPUT
-      - name: test
-        run: |
-          echo ${{ steps.comment.outputs.nextVersion }}
+          git diff main feature/rei/test --exit-code
