@@ -4,7 +4,7 @@ name: Check Version Diff
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened]
     
 jobs:
   check_diff:
