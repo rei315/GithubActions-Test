@@ -14,4 +14,4 @@ jobs:
       - name: Create comments
         id: comment
         run: |
-          git diff origin/main..origin/feature/rei/test --exit-code
+          python3 ./.github/workflows/test.py
